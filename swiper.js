@@ -12,26 +12,17 @@ class Swiper {
       swipeRight: new Event("swipeRoght"),
     };
   }
-
   startTouch(event) {
     event.preventDefault();
-    console.log(event);
-
     this.initialX = event.touches[0].clientX;
     this.initialY = event.touches[0].clientY;
   }
-
   moveTouch(event) {
     if (!this.initialX || !this.initialY) return;
-
     const currentX = event.touches[0].clientX;
     const currentY = event.touches[0].clientY;
-
     const diffX = this.initialX - currentX;
     const diffY = this.initialY - currentY;
-
-    // console.log({ diffX });
-    // console.log({ diffY });
     if (Math.abs(diffX) > Math.abs(diffY)) {
       if (diffX > 0) {
         document.dispatchEvent(this.events.swipeLeft);
